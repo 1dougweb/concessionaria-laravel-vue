@@ -18,7 +18,7 @@ O projeto é uma **SPA** integrada via API REST e **WebSocket**, com **autentica
 
 ### **Backend — Laravel 12**
 - PHP 8.3+
-- Laravel 11
+- Laravel 12
 - MySQL
 - JWT Auth (`tymon/jwt-auth`)
 - Laravel Socialite (Google Auth)
