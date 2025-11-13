@@ -75,7 +75,7 @@ O projeto é uma **SPA** integrada via API REST e **WebSocket**, com **autentica
 ```bash
 git clone https://github.com/1dougweb/concessionaria-laravel-vue.git
 cd concessionaria-laravel-vue
-
+```
 # Backend
 ```bash
 composer install
@@ -83,43 +83,72 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate --seed
 php artisan storage:link
-
+```
 # Instalar WebSocket
 ```bash
 composer require beyondcode/laravel-websockets
 php artisan websockets:serve
-
+```
 ## Frontend
 ```bash
 npm install
 npm run dev
-
+```
 # Iniciar servidor Laravel
 ```bash
 php artisan serve
-
+```
 ## Dependências — Composer
 ```bash
 composer require tymon/jwt-auth
+```
+```bash
 composer require laravel/socialite
+```
+```bash
 composer require spatie/laravel-permission
+```
+```bash
 composer require spatie/laravel-medialibrary
+```
+```bash
 composer require spatie/laravel-responsecache
+```
+```bash
 composer require spatie/laravel-sitemap
+```
+```bash
 composer require spatie/schema-org
+```
+```bash
 composer require fruitcake/laravel-cors
+```
+```bash
 composer require spatie/laravel-backup
+```
+```bash
 composer require beyondcode/laravel-websockets
+```
+```bash
 composer require pestphp/pest --dev
+```
+```bash
 composer require laravel/telescope --dev
+```
 
 ## Dependências — NPM
 ```bash
 npm install vue@3 vue-router@4 pinia axios tailwindcss @headlessui/vue @heroicons/vue
+```
+```bash
 npm install vite-plugin-pwa vue-loading-skeleton @vueuse/core @vueuse/integrations
+```
+```bash
 npm install laravel-echo socket.io-client vue3-toastify
+```
+```bash
 npm install --save-dev autoprefixer postcss cypress
-
+```
 
 ## Estrutura Completa do Projeto
 pgsql
@@ -207,7 +236,7 @@ concessionaria/
 │   └── css/
 │       ├── app.css
 │       └── tailwind.css
-
+```
 
 ## WebSocket — Estrutura
 - Canal público: exibe novos veículos cadastrados em tempo real
