@@ -121,18 +121,6 @@ composer require spatie/laravel-sitemap
 composer require spatie/schema-org
 ```
 ```bash
-composer require fruitcake/laravel-cors
-```
-```bash
-composer require spatie/laravel-backup
-```
-```bash
-composer require beyondcode/laravel-websockets
-```
-```bash
-composer require pestphp/pest --dev
-```
-```bash
 composer require laravel/telescope --dev
 ```
 
@@ -141,7 +129,7 @@ composer require laravel/telescope --dev
 npm install vue@3 vue-router@4 pinia axios tailwindcss @headlessui/vue @heroicons/vue
 ```
 ```bash
-npm install vite-plugin-pwa vue-loading-skeleton @vueuse/core @vueuse/integrations
+npm install vite-plugin-pwa @vueuse/core @vueuse/integrations @vueuse/components
 ```
 ```bash
 npm install laravel-echo socket.io-client vue3-toastify
