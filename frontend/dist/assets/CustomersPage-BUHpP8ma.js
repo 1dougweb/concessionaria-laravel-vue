@@ -1,0 +1,2 @@
+import{_ as s}from"./MainShell.vue_vue_type_script_setup_true_lang-BsfiZuar.js";import{d as a,h as o,i as r,a as t,o as n}from"./index-BmhWz_z3.js";const i=a({__name:"CustomersPage",setup(l){return(m,e)=>(n(),o(s,null,{default:r(()=>[...e[0]||(e[0]=[t("h2",{class:"text-2xl font-semibold"},"Clientes",-1),t("p",{class:"text-slate-400"},"Integração futura.",-1)])]),_:1}))}});export{i as default};
+//# sourceMappingURL=CustomersPage-BUHpP8ma.js.map
