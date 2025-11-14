@@ -3,6 +3,7 @@
 namespace App\Domain\Vehicles\Models;
 
 use App\Models\User;
+use Database\Factories\VehicleStatusHistoryFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,11 @@ class VehicleStatusHistory extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'changed_by');
+    }
+
+    protected static function newFactory(): VehicleStatusHistoryFactory
+    {
+        return VehicleStatusHistoryFactory::new();
     }
 }
 

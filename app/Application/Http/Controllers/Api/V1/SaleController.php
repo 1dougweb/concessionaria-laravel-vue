@@ -17,9 +17,12 @@ class SaleController extends Controller
 
     public function index(Request $request): JsonResponse
     {
+        $perPage = (int) $request->get('per_page', 15);
+        $perPage = min(max($perPage, 1), 100);
+
         $collection = $this->sales->paginate(
             filters: $request->only(['status', 'seller_id']),
-            perPage: (int) $request->get('per_page', 15)
+            perPage: $perPage
         );
 
         return response()->json($collection);
@@ -33,7 +36,7 @@ class SaleController extends Controller
     public function finalize(Request $request, Sale $sale, FinalizeSaleAction $finalizeSaleAction): JsonResponse
     {
         $payload = $request->validate([
-            'status' => ['nullable', 'string'],
+            'status' => ['nullable', 'string', 'in:completed,cancelled'],
             'metadata' => ['nullable', 'array'],
         ]);
 

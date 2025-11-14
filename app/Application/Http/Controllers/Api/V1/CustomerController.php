@@ -20,9 +20,12 @@ class CustomerController extends Controller
 
     public function index(Request $request): JsonResponse
     {
+        $perPage = (int) $request->get('per_page', 15);
+        $perPage = min(max($perPage, 1), 100);
+
         $collection = $this->customers->paginate(
             filters: $request->only(['status', 'search']),
-            perPage: (int) $request->get('per_page', 15)
+            perPage: $perPage
         );
 
         return response()->json($collection);
@@ -42,9 +45,14 @@ class CustomerController extends Controller
 
     public function update(UpdateCustomerRequest $request, Customer $customer): JsonResponse
     {
+        $payload = array_merge(
+            $customer->only($customer->getFillable()),
+            $request->validated()
+        );
+
         $updated = $this->customers->update(
             $customer,
-            CustomerData::fromArray(array_merge($customer->toArray(), $request->validated())),
+            CustomerData::fromArray($payload),
         );
 
         return response()->json($updated);
@@ -54,7 +62,7 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return response()->json(status: Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }
 

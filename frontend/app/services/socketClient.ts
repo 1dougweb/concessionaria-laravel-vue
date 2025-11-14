@@ -16,15 +16,16 @@ const resolvePort = () => {
 }
 
 const buildHostUrl = () => {
-  const protocol = import.meta.env.VITE_ECHO_TLS === 'true' ? 'https' : 'http'
-  const host = resolveHost()
-  const port = resolvePort()
-  return `${protocol === 'https' ? 'https' : 'http'}://${host}:${port}`
+  const isTls = import.meta.env.VITE_ECHO_TLS === 'true'
+  const scheme = isTls ? 'https' : 'http'
+  return `${scheme}://${resolveHost()}:${resolvePort()}`
 }
 
-let instance: Echo<'socket.io'> | null = null
+const resolvePath = () => import.meta.env.VITE_ECHO_PATH ?? '/socket.io'
 
-export const getEcho = (): Echo<'socket.io'> => {
+let instance: Echo<any> | null = null
+
+export const getEcho = (): Echo<any> => {
   if (instance) return instance
 
   const authStore = useAuthStore()
@@ -34,6 +35,7 @@ export const getEcho = (): Echo<'socket.io'> => {
     client: io,
     key: import.meta.env.VITE_ECHO_KEY,
     host: buildHostUrl(),
+    path: resolvePath(),
     transports: ['websocket'],
     forceTLS: import.meta.env.VITE_ECHO_TLS === 'true',
     auth: {

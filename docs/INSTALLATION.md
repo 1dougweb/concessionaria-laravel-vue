@@ -57,11 +57,12 @@ cd concessionaria-laravel-vue
    ```
 2. **Variáveis**
    ```
-   VITE_API_BASE_URL=http://localhost:8000/api/v1
-   VITE_ECHO_KEY=local-key
-   VITE_ECHO_HOST=localhost
-   VITE_ECHO_PORT=6001
-   VITE_ECHO_TLS=false
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+VITE_ECHO_KEY=local-key
+VITE_ECHO_HOST=localhost
+VITE_ECHO_PORT=6001
+VITE_ECHO_TLS=false
+VITE_ECHO_PATH=/socket.io
    ```
 3. **Rodar dev server**
    ```bash
@@ -75,6 +76,11 @@ O seed cria/atualiza:
 email: admin@concessionaria.local
 senha: Admin#123
 ```
+Além do usuário administrador, o `DatabaseSeeder` popula automaticamente:
+
+- 20 clientes ativos/inativos
+- 25 veículos com histórico de status
+- Propostas (incluindo anexos) e algumas vendas com pagamentos
 
 ## 5. Testes e Qualidade
 - **Backend**
@@ -113,4 +119,10 @@ senha: Admin#123
 - Configurar CI/CD (GitHub Actions).
 - Criar containers (Docker Compose) com serviços (app, queue, websockets, mysql, redis).
 - Monitoramento: habilitar logs no Telescope/Stackdriver.
+
+## 9. Frontend – Loja e Simulador
+- Filtros avançados e busca estão em `frontend/app/components/domain/vehicles/VehicleFilters.vue`.
+- Skeletons são exibidos automaticamente durante carregamentos (`VehicleCardSkeleton`).
+- O simulador de financiamento (`VehicleFinanceSimulator.vue`) calcula parcelas com entrada, taxa e prazo configuráveis.
+- Para adicionar filtros customizados, ajuste `frontend/app/utils/vehicleFilters.ts` e o store `useVehicleStore`.
 

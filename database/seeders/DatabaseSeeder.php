@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::updateOrCreate(
+        $admin = User::updateOrCreate(
             ['email' => 'admin@concessionaria.local'],
             [
                 'name' => 'Admin',
@@ -24,5 +24,18 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
             ],
         );
+
+        $this->call([
+            CustomerSeeder::class,
+            VehicleSeeder::class,
+            ProposalSeeder::class,
+            SaleSeeder::class,
+        ]);
+
+        $this->command?->info(sprintf(
+            'Admin: %s / %s',
+            $admin->email,
+            'Admin#123'
+        ));
     }
 }

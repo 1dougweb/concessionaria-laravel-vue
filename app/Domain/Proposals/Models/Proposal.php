@@ -6,6 +6,7 @@ use App\Domain\Customers\Models\Customer;
 use App\Domain\Sales\Models\Sale;
 use App\Domain\Vehicles\Models\Vehicle;
 use App\Models\User;
+use Database\Factories\ProposalFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -68,6 +69,11 @@ class Proposal extends Model
     public function sale(): HasOne
     {
         return $this->hasOne(Sale::class);
+    }
+
+    protected static function newFactory(): ProposalFactory
+    {
+        return ProposalFactory::new();
     }
 }
 

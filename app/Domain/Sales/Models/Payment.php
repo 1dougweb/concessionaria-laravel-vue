@@ -2,6 +2,7 @@
 
 namespace App\Domain\Sales\Models;
 
+use Database\Factories\PaymentFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,6 +37,11 @@ class Payment extends Model
     public function sale(): BelongsTo
     {
         return $this->belongsTo(Sale::class);
+    }
+
+    protected static function newFactory(): PaymentFactory
+    {
+        return PaymentFactory::new();
     }
 }
 

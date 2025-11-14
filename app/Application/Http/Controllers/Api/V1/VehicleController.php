@@ -24,9 +24,12 @@ class VehicleController extends Controller
 
     public function index(Request $request): JsonResponse
     {
+        $perPage = (int) $request->get('per_page', 15);
+        $perPage = min(max($perPage, 1), 100);
+
         $collection = $this->vehicles->paginate(
             filters: $request->only(['search', 'status', 'type']),
-            perPage: (int) $request->get('per_page', 15)
+            perPage: $perPage
         );
 
         return response()->json($collection);
@@ -51,9 +54,12 @@ class VehicleController extends Controller
         Vehicle $vehicle,
         UpdateVehicleAction $updateVehicleAction
     ): JsonResponse {
-        $updated = $updateVehicleAction($vehicle, VehicleData::fromArray(
-            array_merge($vehicle->toArray(), $request->validated())
-        ));
+        $payload = array_merge(
+            $vehicle->only($vehicle->getFillable()),
+            $request->validated()
+        );
+
+        $updated = $updateVehicleAction($vehicle, VehicleData::fromArray($payload));
 
         return response()->json($updated);
     }
@@ -62,7 +68,7 @@ class VehicleController extends Controller
     {
         $vehicle->delete();
 
-        return response()->json(status: Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 
     public function updateStatus(

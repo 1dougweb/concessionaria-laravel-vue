@@ -14,7 +14,7 @@ class UpdateVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => ['nullable', 'uuid'],
+            'customer_id' => ['nullable', 'uuid', 'exists:customers,id'],
             'title' => ['sometimes', 'string', 'max:255'],
             'slug' => ['sometimes', 'string'],
             'type' => ['sometimes', 'string', 'in:car,motorcycle,truck'],
@@ -26,7 +26,7 @@ class UpdateVehicleRequest extends FormRequest
             'currency' => ['sometimes', 'string', 'size:3'],
             'fuel_type' => ['sometimes', 'string', 'max:255'],
             'transmission' => ['sometimes', 'string', 'max:255'],
-            'status' => ['sometimes', 'string'],
+            'status' => ['sometimes', 'string', 'in:draft,published,reserved,sold'],
             'stock_count' => ['sometimes', 'integer', 'min:0'],
             'description' => ['sometimes', 'string'],
             'specifications' => ['sometimes', 'array'],

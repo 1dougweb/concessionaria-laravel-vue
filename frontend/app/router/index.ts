@@ -5,13 +5,14 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/auth/login',
-      component: () => import('../pages/auth/LoginPage.vue'),
+      path: '/',
+      component: () => import('../pages/home/HomePage.vue'),
       meta: { public: true }
     },
     {
-      path: '/',
-      component: () => import('../pages/dashboard/DashboardPage.vue')
+      path: '/auth/login',
+      component: () => import('../pages/auth/LoginPage.vue'),
+      meta: { public: true }
     },
     {
       path: '/vehicles',

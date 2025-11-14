@@ -14,7 +14,7 @@ class UpdateVehicleStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['required', 'string'],
+            'status' => ['required', 'string', 'in:draft,published,reserved,sold'],
             'notes' => ['nullable', 'string'],
         ];
     }

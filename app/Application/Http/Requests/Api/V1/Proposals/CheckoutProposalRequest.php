@@ -18,6 +18,7 @@ class CheckoutProposalRequest extends FormRequest
             'payment' => ['nullable', 'array'],
             'payment.provider' => ['nullable', 'string'],
             'payment.reference' => ['nullable', 'string'],
+            'payment.amount' => ['nullable', 'numeric', 'min:0'],
             'metadata' => ['nullable', 'array'],
         ];
     }

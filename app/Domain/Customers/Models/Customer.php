@@ -5,6 +5,7 @@ namespace App\Domain\Customers\Models;
 use App\Domain\Proposals\Models\Proposal;
 use App\Domain\Sales\Models\Sale;
 use App\Domain\Vehicles\Models\Vehicle;
+use Database\Factories\CustomerFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -52,6 +53,11 @@ class Customer extends Model
     public function sales(): HasMany
     {
         return $this->hasMany(Sale::class);
+    }
+
+    protected static function newFactory(): CustomerFactory
+    {
+        return CustomerFactory::new();
     }
 }
 
